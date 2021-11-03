@@ -17,6 +17,26 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 }, format: { with: /\A[a-zA-Z0-9_]+\z/ }
 
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
+
+  def follow(other_user)
+    following << other_user unless self == other_user
+  end
+
+  def unfollow(other_user)
+    following.delete(other_user)
+  end
+ 
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
+  def feed
+    following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id).published.recent
+  end
+
   private
 
   def set_private_api_key

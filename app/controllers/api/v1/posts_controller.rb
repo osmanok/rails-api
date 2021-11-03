@@ -48,7 +48,7 @@ class Api::V1::PostsController < Api::V1::BaseController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body, :visible)
+      params.require(:post).permit(:title, :body, :visible, :vote)
     end
 
     def authorize_post

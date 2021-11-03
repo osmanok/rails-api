@@ -24,6 +24,9 @@ Rails.application.routes.draw do
             patch :deny, on: :member
           end
         end
+        resources :relationships, only: %i[create destroy]
+        get "dashboard", to: "dashboard#index", as: "dashboard"
+        get "feed", to: "feed#index", as: "feed"
       end
     end
   end
