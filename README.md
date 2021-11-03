@@ -53,5 +53,5 @@ Sign up and get bearer token
 
 ## Example Request
 
-![example request](https://ibb.co/8sj5xd0)
+![example request](https://i.ibb.co/kBh8D9x/Screenshot-at-Nov-03-17-37-06.png)
 
