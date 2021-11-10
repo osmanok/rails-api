@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         resources :relationships, only: %i[create destroy]
         get "dashboard", to: "dashboard#index", as: "dashboard"
         get "feed", to: "feed#index", as: "feed"
+        get "profile", to: "profile#index", as: "profile"
       end
     end
   end

@@ -37,7 +37,7 @@ class Api::V1::PostsController < Api::V1::BaseController
   #DELETE /api/v1/posts/:id
   def destroy
     @post.destroy
-    render :show, status: :ok
+    head :no_content, status: :ok
     @user.requests.create(method: :delete, requestable_type: "Post")
   end 
   

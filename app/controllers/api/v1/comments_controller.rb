@@ -1,5 +1,6 @@
 class Api::V1::CommentsController < Api::V1::PostsController
-  before_action :set_post, only: [:show, :create]
+  before_action :set_post, only: [:show, :create, :index, :approve, :deny]
+  before_action :set_comment, only: [:show, :update]
   
   
   def show
@@ -16,7 +17,7 @@ class Api::V1::CommentsController < Api::V1::PostsController
   end
 
   def index
-    @comments = @post.comments.all
+    @comments = @post.comments
   end
 
   def approve
@@ -35,6 +36,10 @@ class Api::V1::CommentsController < Api::V1::PostsController
 
     def set_post
       @post = Post.find(params[:post_id])
+    end
+
+    def set_comment
+      @comment = Comment.find(params[:id])
     end
 
     def comment_params
